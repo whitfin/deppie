@@ -35,7 +35,7 @@ defmodule Deppie do
   def once(msg) when is_bitstring(msg) do
     Agent.cast(:deppie, fn(dep) ->
       hash = :erlang.md5(msg)
-      if !MapSet.member?(dep, hash) and should_log? do
+      if !MapSet.member?(dep, hash) and should_log?() do
         warn(msg)
         MapSet.put(dep, hash)
       else

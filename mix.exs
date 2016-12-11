@@ -25,7 +25,7 @@ defmodule Deppie.Mixfile do
       },
       version: "1.0.0",
       elixir: "~> 1.1",
-      deps: deps,
+      deps: deps(),
       docs: [
         extras: [ "README.md" ],
         source_ref: "master",
@@ -52,9 +52,9 @@ defmodule Deppie.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      { :benchfella, "~> 0.3.2",  optional: true, only: [ :dev, :test ] },
-      { :earmark,    "~> 0.2.1",  optional: true, only: [ :dev, :test ] },
-      { :ex_doc,     "~> 0.11.5", optional: true, only: [ :dev, :test ] }
+      { :benchfella, "~> 0.3",  optional: true, only: [ :dev, :test ] },
+      { :earmark,    "~> 1.0",  optional: true, only: [ :dev, :test ] },
+      { :ex_doc,     "~> 0.14", optional: true, only: [ :dev, :test ] }
     ]
   end
 end
