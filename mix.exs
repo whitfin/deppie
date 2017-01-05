@@ -52,9 +52,8 @@ defmodule Deppie.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      { :benchfella, "~> 0.3",  optional: true, only: [ :dev, :test ] },
-      { :earmark,    "~> 1.0",  optional: true, only: [ :dev, :test ] },
-      { :ex_doc,     "~> 0.14", optional: true, only: [ :dev, :test ] }
+      { :earmark, "~> 1.0",  optional: true, only: [ :dev, :test ] },
+      { :ex_doc,  "~> 0.14", optional: true, only: [ :dev, :test ] }
     ]
   end
 end
