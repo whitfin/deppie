@@ -30,14 +30,14 @@ defmodule DeppieTest do
 
     msg = CaptureLog.capture_log(fn ->
       Deppie.once(deprecation_msg)
-      :timer.sleep(1)
+      :timer.sleep(5)
     end)
 
     assert(msg =~ "Deprecation Notice: #{deprecation_msg}")
 
     msg = CaptureLog.capture_log(fn ->
       Deppie.once(deprecation_msg)
-      :timer.sleep(1)
+      :timer.sleep(5)
     end)
 
     assert(msg == "")
@@ -50,7 +50,7 @@ defmodule DeppieTest do
 
     msg = CaptureLog.capture_log(fn ->
       Deppie.once(deprecation_msg)
-      :timer.sleep(1)
+      :timer.sleep(5)
     end)
 
     assert(msg == "")
@@ -59,7 +59,7 @@ defmodule DeppieTest do
 
     msg = CaptureLog.capture_log(fn ->
       Deppie.once(deprecation_msg)
-      :timer.sleep(1)
+      :timer.sleep(5)
     end)
 
     assert(msg =~ "Deprecation Notice: #{deprecation_msg}")
