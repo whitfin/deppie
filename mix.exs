@@ -23,7 +23,7 @@ defmodule Deppie.Mixfile do
         },
         maintainers: [ "Isaac Whitfield" ]
       },
-      version: "1.0.0",
+      version: "1.1.0",
       elixir: "~> 1.1",
       deps: deps(),
       docs: [
@@ -38,7 +38,7 @@ defmodule Deppie.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger], mod: {Deppie.Application, []}]
   end
 
   # Dependencies can be Hex packages:

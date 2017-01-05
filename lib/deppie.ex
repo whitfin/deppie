@@ -10,15 +10,6 @@ defmodule Deppie do
   is under a single microsecond.
   """
 
-  # start the agent
-  @on_load :init
-
-  @doc false
-  def init do
-    { :ok, _pid } = Agent.start(&MapSet.new/0, [ name: :deppie ])
-    :ok
-  end
-
   @doc """
   Emits a deprecation message the first time this function is called.
 
