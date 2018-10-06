@@ -1,8 +1,9 @@
 defmodule Deppie.Mixfile do
   use Mix.Project
 
+  @version "1.1.0"
   @url_docs "http://hexdocs.pm/deppie"
-  @url_github "https://github.com/zackehh/deppie"
+  @url_github "https://github.com/whitfin/deppie"
 
   def project do
     [
@@ -23,12 +24,12 @@ defmodule Deppie.Mixfile do
         },
         maintainers: [ "Isaac Whitfield" ]
       },
-      version: "1.1.0",
+      version: @version,
       elixir: "~> 1.1",
       deps: deps(),
       docs: [
         extras: [ "README.md" ],
-        source_ref: "master",
+        source_ref: "v#{@version}",
         source_url: @url_github
       ]
     ]
@@ -38,7 +39,7 @@ defmodule Deppie.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger], mod: {Deppie.Application, []}]
+    [applications: [:logger]]
   end
 
   # Dependencies can be Hex packages:
@@ -52,8 +53,10 @@ defmodule Deppie.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      { :earmark, "~> 1.0",  optional: true, only: [ :dev, :test ] },
-      { :ex_doc,  "~> 0.14", optional: true, only: [ :dev, :test ] }
+      # Production dependencies required
+      { :global_lazy, "~> 1.0" },
+      # Development only dependencies, not shipped to production
+      { :ex_doc,  "~> 0.16", optional: true, only: [ :docs ] }
     ]
   end
 end

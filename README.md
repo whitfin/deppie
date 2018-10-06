@@ -12,23 +12,13 @@ Originally this module was going to be named `Deprecation`, but that's pretty lo
 
 ## Installation
 
-Deppie is available on Hex:
+Deppie is available on Hex, so add it as a dependency to your `mix.exs`:
 
-  1. Add deppie to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:deppie, "~> 1.0.0"}]
-    end
-    ```
-
-  2. Ensure deppie is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:deppie]]
-    end
-    ```
+```elixir
+def deps do
+  [{:deppie, "~> 1.1"}]
+end
+```
 
 ## Usage
 

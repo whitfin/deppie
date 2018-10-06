@@ -1,6 +1,4 @@
 defmodule Deppie do
-  require Logger
-
   @moduledoc """
   Deppie is a very small library to make logging deprecation warnings easy.
 
@@ -9,6 +7,10 @@ defmodule Deppie do
   efficient and convenient way - the typical overhead of a `Deppie.once/1` call
   is under a single microsecond.
   """
+  require Logger
+
+  # inline for better perforfmance
+  @compile {:inline, once: 1, warn: 1}
 
   @doc """
   Emits a deprecation message the first time this function is called.
@@ -24,31 +26,12 @@ defmodule Deppie do
   """
   @spec once(msg :: bitstring) :: :ok
   def once(msg) when is_bitstring(msg) do
-    Agent.cast(:deppie, fn(dep) ->
-      hash = :erlang.md5(msg)
-      if !MapSet.member?(dep, hash) and should_log?() do
+    if should_log?() do
+      GlobalLazy.init("deppie:once:#{:erlang.phash2(msg)}", fn ->
         warn(msg)
-        MapSet.put(dep, hash)
-      else
-        dep
-      end
-    end)
-  end
-
-  @doc """
-  Resets Deppie to the initial state.
-
-  This is typically of no use to anybody outside this library.
-
-  ## Examples
-
-      iex> Deppie.reset()
-      :ok
-
-  """
-  @spec reset() :: :ok
-  def reset do
-    Agent.cast(:deppie, fn(_) -> MapSet.new() end)
+      end)
+    end
+    :ok
   end
 
   @doc """
@@ -64,14 +47,11 @@ defmodule Deppie do
 
   """
   @spec warn(msg :: bitstring) :: :ok
-  def warn(msg) when is_bitstring(msg) do
-    Logger.warn("Deprecation Notice: #{msg}")
-  end
+  def warn(msg) when is_bitstring(msg),
+    do: Logger.warn("Deprecation Notice: #{msg}")
 
   # Determines whether we need to log or not, due to the log level. This is used
   # to make sure that we don't disable a deprecation warning
-  defp should_log? do
-    Logger.compare_levels(Logger.level, :warn) != :gt
-  end
-
+  defp should_log?,
+    do: Logger.compare_levels(Logger.level, :warn) != :gt
 end

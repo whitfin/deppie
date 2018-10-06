@@ -4,16 +4,7 @@ defmodule DeppieTest do
   alias ExUnit.CaptureLog
 
   setup do
-    start_level = Logger.level()
-
-    on_exit(fn ->
-      Logger.configure([ level: start_level ])
-    end)
-
     Logger.configure([ level: :debug ])
-
-    Deppie.reset()
-
     :ok
   end
 
@@ -66,7 +57,8 @@ defmodule DeppieTest do
   end
 
   defp gen_msg do
-    :crypto.rand_uniform(1, 10000) |> to_string
+    10000
+    |> :rand.uniform
+    |> to_string
   end
-
 end
