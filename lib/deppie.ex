@@ -27,7 +27,7 @@ defmodule Deppie do
   @spec once(msg :: bitstring) :: :ok
   def once(msg) when is_bitstring(msg) do
     if should_log?() do
-      GlobalLazy.init("deppie:once:#{:erlang.phash2(msg)}", fn ->
+      :global_flags.once("deppie:once:#{:erlang.phash2(msg)}", fn ->
         warn(msg)
       end)
     end

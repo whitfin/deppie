@@ -54,7 +54,7 @@ defmodule Deppie.Mixfile do
   defp deps do
     [
       # Production dependencies required
-      { :global_lazy, "~> 1.0" },
+      { :global_flags, "~> 1.0" },
       # Development only dependencies, not shipped to production
       { :ex_doc,  "~> 0.16", optional: true, only: [ :docs ] }
     ]
