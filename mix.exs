@@ -1,7 +1,7 @@
 defmodule Deppie.Mixfile do
   use Mix.Project
 
-  @version "1.1.1"
+  @version "1.1.2"
   @url_docs "http://hexdocs.pm/deppie"
   @url_github "https://github.com/whitfin/deppie"
 
